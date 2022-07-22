@@ -41,10 +41,11 @@ class AddFragment : Fragment() {
         val firstName = addFirstName_et.text.toString()
         val lastName = addLastName_et.text.toString()
         val age = addAge_et.text
+        val description = addDescription_et.text.toString();
 
-        if(inputCheck(firstName, lastName, age)){
+        if(inputCheck(firstName, lastName, age, description)){
             // Create User Object
-            val user = User(0, firstName, lastName, Integer.parseInt(age.toString()))
+            val user = User(0, firstName, lastName, Integer.parseInt(age.toString()),description)
             // Add Data to Database
             mUserViewModel.addUser(user)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
@@ -55,8 +56,8 @@ class AddFragment : Fragment() {
         }
     }
 
-    private fun inputCheck(firstName: String, lastName: String, age: Editable): Boolean{
-        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && age.isEmpty())
+    private fun inputCheck(firstName: String, lastName: String, age: Editable, description: String): Boolean{
+        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && age.isEmpty() && TextUtils.isEmpty(description))
     }
 
 }
